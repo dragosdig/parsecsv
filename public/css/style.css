@@ -1,0 +1,4 @@
+ul.errors li{
+    list-style-type: none;
+    color: red;
+}

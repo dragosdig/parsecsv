@@ -1,0 +1,20 @@
+<?php
+$this->headTitle('Parse CSV');
+?>
+
+<!doctype html>
+<html>
+    <head>
+        <?php echo $this->headTitle(); ?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/bootstrap.min.css');?>
+        <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/style.css');?>
+    </head>
+    <body>
+        <div id="container" class="container" style="width: 600px;">
+            <div class="span6 well">
+                <h1><?php echo $this->escape($this->title);?></h1>
+                <?php echo $this->layout()->content; ?>
+            </div>
+        </div>
+    </body>
+</html>
