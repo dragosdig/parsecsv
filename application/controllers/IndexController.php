@@ -19,9 +19,13 @@ class IndexController extends Zend_Controller_Action
             $formData = $this->getRequest()->getPost();
             if($form->isValid($formData))
             {
-                $values = $form->getValues();
-                $this->view->data = $values;
-                $this->render('result');
+                try {
+                    $values = $form->getValues();
+                    $this->view->data = $values;
+                    $this->render('result');
+                } catch (Exception $e) {
+                    echo $e->getMessage();
+                }
             }
             else
             {

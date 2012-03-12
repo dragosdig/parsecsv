@@ -1,6 +1,6 @@
 <?php
 $out = "Thank you {$this->data['email']}. The result of your query is:<br>";
-if (($fh = fopen('/tmp/'.$this->data['csv_file'], "r")) !== FALSE) {
+if (($fh = fopen(UPLOAD_PATH.DIRECTORY_SEPARATOR.$this->data['csv_file'], "r")) !== FALSE) {
     while (($row = fgetcsv($fh, 1000, ",")) !== FALSE) {
         $file_data[] = $row;
     }
@@ -14,7 +14,7 @@ foreach($file_data as $key => $val)
 array_multisort($fnames, SORT_ASC, SORT_STRING, $file_data);
 foreach($file_data as $row)
 {
-    $out .= "<p>".$this->escape($row[0]).",".$this->escape($row[1]).",".$this->escape($row[2])."</p>";
+    $out .= "<p>".$this->escape(trim($row[0])).",".$this->escape(trim($row[1])).",".$this->escape(trim($row[2]))."</p>";
 }
 
 echo $out;

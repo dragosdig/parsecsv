@@ -12,6 +12,7 @@ class Common_Validate_File_CsvFile extends Zend_Validate_Abstract
 
     public function isValid($value, $file=null)
     {
+        $header = array("Id", "Firstname", "Lastname");
         if($file === null)
         {
             $file = array('type' => null, 'name' => $value);
@@ -20,7 +21,6 @@ class Common_Validate_File_CsvFile extends Zend_Validate_Abstract
         if (!Zend_Loader::isReadable($value)) {
             return $this->_throw($file, self::NOT_READABLE);
         }
-        $header = array("Id", "Firstname", "Lastname");
         $header_row = array();
         $check = 1;
         if (($fh = fopen($file['tmp_name'], "r")) !== FALSE) {
@@ -33,7 +33,10 @@ class Common_Validate_File_CsvFile extends Zend_Validate_Abstract
                 }
                 if($i == 0)
                 {
-                    $header_row = $data;
+                    foreach($data as $val)
+                    {
+                        $header_row[] = trim($val);
+                    }
                 }
                 $i++;
             }

@@ -15,7 +15,7 @@ class Application_Form_Upload extends Zend_Form
             ->addValidator('EmailAddress');
         $csv_file = new Zend_Form_Element_File('csv_file');
         $csv_file->setLabel('Csv file:')
-            ->setDestination('/tmp')
+            ->setDestination(UPLOAD_PATH)
             ->setRequired(true)
             ->addValidator('Size', false, 102400)
             ->addValidator('Extension', false, 'txt,csv')
